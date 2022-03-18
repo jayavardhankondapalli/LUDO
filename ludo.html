@@ -1,0 +1,906 @@
+<html>
+<head>
+<title>ludo</title>
+  <style>
+    table
+    {
+      table-layout: fixed;
+      width:80%;
+      height: 80%
+      overflow: hidden;
+      border:1px solid black;
+      border-collapse: collapse;
+    }
+    table,td,th
+    {
+      border:1px solid black;
+      border-collapse: collapse;
+      width:40px;
+      height:40px;
+    }
+    #button,.button2
+    {
+      background-color: rgb(82,186,179);
+      border-radius: 6px;
+      border:none;
+      color: rgb(255, 255,255);
+      padding:10px;
+      margin-left: 10px;
+      text-transform: uppercase;
+      width: 200px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 40px;
+    }
+    #button:disabled
+    {
+      background-color: #D0D0D0;
+    }
+    #placeholder
+    {
+      background-color: white;
+      position: absolute;
+      bottom: 40px;
+      height: 90px;
+      width: 90px;
+      margin-left: 60px;
+      border: 5px solid gray;
+      border-radius: 10px;
+      font-size: 50px;
+    }
+  </style></head>
+<body bgcolor="black">
+  <div style="width:100%">
+  <div style="float:left;width:25%">
+  <div id="start_buttons">
+  <button class="button2" style="position:absolute;bottom:570px" onclick="players_button(this)">2 PLAYERS</button>
+  <button class="button2" style="position:absolute;bottom:520px" onclick="players_button(this)">4 PLAYERS</button>
+</div>
+  <p id="placeholder"></p>
+  <button id="button" onclick="first_button()">ROLL DICE</button>
+</div>
+</div>
+<center><table id="board" bgcolor="white">
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><img src="green.png" width="40px" heigth="40px"></td>
+      <td><img src="green.png" width="40px" heigth="40px"></td>
+      <td><img src="green.png" width="40px" heigth="40px"></td>
+      <td><img src="green.png" width="40px" heigth="40px"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><img src="star.png" width="40px" heigth="40px"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><img src="red.png" width="40px" heigth="40px"></td>
+      <td><img src="red.png" width="40px" heigth="40px"></td>
+      <td><img src="red.png" width="40px" heigth="40px"></td>
+      <td><img src="red.png" width="40px" heigth="40px"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><img src="star.png" width="40px" heigth="40px"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td></td>
+      <td><img src="star.png" width="40px" heigth="40px"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><img src="yellow.png" width="40px" heigth="40px"></td>
+      <td><img src="yellow.png" width="40px" heigth="40px"></td>
+      <td><img src="yellow.png" width="40px" heigth="40px"></td>
+      <td><img src="yellow.png" width="40px" heigth="40px"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><img src="star.png" width="40px" heigth="40px"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><img src="blue.png" width="40px" heigth="40px"></td>
+      <td><img src="blue.png" width="40px" heigth="40px"></td>
+      <td><img src="blue.png" width="40px" heigth="40px"></td>
+      <td><img src="blue.png" width="40px" heigth="40px"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr></table></center>
+  </div>
+</body>
+<script>
+  var chance=0;
+  var players;
+  var coin_positions=[[[4,1],[4,2],[4,3],[4,4]],[[1,10],[1,11],[1,12],[1,13]],[[10,10],[10,11],[10,12],[10,13]],[[13,1],[13,2],[13,3],[13,4]]];
+  var coin_index=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  var coin_status=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  var start_positions=[[6,1],[1,8],[8,13],[13,6]];
+  var safe_position=[[6,12],[12,8],[2,6],[8,2],[8,13],[1,8],[13,6],[6,1]];
+  var dead_positions=[[[4,1],[4,2],[4,3],[4,4]],[[1,10],[1,11],[1,12],[1,13],[1,14]],[[10,10],[10,11],[10,12],[10,13]],[[13,1],[13,2],[13,3],[13,4]]];
+  var coin_position_scope=[[[6,1],[6,2],[6,3],[6,4],[6,5],[5,6],[4,6],[3,6],[2,6],[1,6],[0,6],[0,7],[0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,9],[6,10],[6,11],[6,12],[6,13],[6,14],[7,14],[8,14],[8,13],[8,12],[8,11],[8,10],[8,9],[9,8],[10,8],[11,8],[12,8],[13,8],[14,8],[14,7],[14,6],[13,6],[12,6],[11,6],[10,6],[9,6],[8,5],[8,4],[8,3],[8,2],[8,1],[8,0],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6]],[[1,8],[2,8],[3,8],[4,8],[5,8],[6,9],[6,10],[6,11],[6,12],[6,13],[6,14],[7,14],[8,14],[8,13],[8,12],[8,11],[8,10],[8,9],[9,8],[10,8],[11,8],[12,8],[13,8],[14,8],[14,7],[14,6],[13,6],[12,6],[11,6],[10,6],[9,6],[8,5],[8,4],[8,3],[8,2],[8,1],[8,0],[7,0],[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[5,6],[4,6],[3,6],[2,6],[1,6],[0,6],[0,7],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7]],[[8,13],[8,12],[8,11],[8,10],[8,9],[9,8],[10,8],[11,8],[12,8],[13,8],[14,8],[14,7],[14,6],[13,6],[12,6],[11,6],[10,6],[9,6],[8,5],[8,4],[8,3],[8,2],[8,1],[8,0],[7,0],[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[5,6],[4,6],[3,6],[2,6],[1,6],[0,6],[0,7],[0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,9],[6,10],[6,11],[6,12],[6,13],[6,14],[7,14],[7,13],[7,12],[7,11],[7,10],[7,9],[7,8]],[[13,6],[12,6],[11,6],[10,6],[9,6],[8,5],[8,4],[8,3],[8,2],[8,1],[8,0],[7,0],[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[5,6],[4,6],[3,6],[2,6],[1,6],[0,6],[0,7],[0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,9],[6,10],[6,11],[6,12],[6,13],[6,14],[7,14],[8,14],[8,13],[8,12],[8,11],[8,10],[8,9],[9,8],[10,8],[11,8],[12,8],[13,8],[14,8],[14,7],[13,7],[12,7],[11,7],[10,7],[9,7],[8,7]]];
+  var images=["\"red.png\"","\"green.png\"","\"yellow.png\"","\"blue.png\""];
+  var dice_pic=["\"one.png\"","\"two.png\"","\"three.png\"","\"four.png\"","\"five.png\"","\"six.png\""];
+  var color=["red","green","yellow","blue"];
+  var point=0;
+  var board=document.getElementById("board");
+initilize_board();
+function first(x)
+{
+    var button=document.getElementById("button");
+    button.disabled=true;
+    point=random_number();
+    var placeholder=document.getElementById("placeholder");
+    placeholder.innerHTML=dice_image(point);
+    placeholder.style.borderColor=color[x];
+    if(alldead(x)==1 && point!=6)
+    {console.log(point+" yyyyy")
+        next_chance();                       // all are dead , point is not 6
+    }
+    else if((not_possible(x)==1 && point!=6)||(point==6 &&(isdeadthere(x)==0 && not_possible(x)==1)))
+    {console.log("xxxxxxx")
+       next_chance();                       //not possible for not 6 and 6
+    }
+    else if(point==6)
+    {
+      for(var i=0;i<4;i++)
+      {
+        console.log("aaaaa")
+        if(coin_status[x][i]==0)
+        {console.log("bbbbbb")
+          board.rows[dead_positions[x][i][0]].cells[dead_positions[x][i][1]].onclick=function(){click_dead(this,x);};
+        }
+        if(coin_status[x][i]==1 && possible(x,i)==1)
+        {console.log("ccccc")
+          board.rows[coin_positions[x][i][0]].cells[coin_positions[x][i][1]].onclick=function(){normal_clickable(this,x);};
+        }
+      }
+    }
+    else
+    {
+        for(var i=0;i<4;i++)
+        {console.log("eeee")
+          if(coin_status[x][i]==1 && possible(x,i)==1)
+          {console.log("ddddd")
+            board.rows[coin_positions[x][i][0]].cells[coin_positions[x][i][1]].onclick=function(){normal_clickable(this,x);};
+          }
+        }
+    }
+}
+function click_dead(celref,x)
+{
+  for(var i=0;i<4;i++)
+  {
+    board.rows[coin_positions[x][i][0]].cells[coin_positions[x][i][1]].onclick=function(){no();};
+  }
+  var r=celref.parentElement.rowIndex;
+  var c=celref.cellIndex;
+  console.log(r+" "+c+" c");
+  if(c<6)
+  {
+    coin_status[x][c-1]=1;
+  }
+  else
+  {
+        coin_status[x][c-10]=1;
+  }
+  for(var i=0;i<4;i++)
+  {
+    if(coin_positions[x][i][0]==r && coin_positions[x][i][1]==c)
+    {
+      coin_positions[x][i][0]=start_positions[x][0];
+      coin_positions[x][i][1]=start_positions[x][1];
+      break;
+    }
+  }
+  change_ui(r,c,start_positions[x][0],start_positions[x][1],x);
+  button.disabled=false;
+}
+function normal_clickable(celref,x)
+{
+      var bute=0;
+      for(var i=0;i<4;i++)
+      {
+
+        board.rows[coin_positions[x][i][0]].cells[coin_positions[x][i][1]].onclick=function(){no();};
+      }
+      var r=celref.parentElement.rowIndex;
+      var c=celref.cellIndex;
+      console.log(r+" "+c+" nn");
+      var point_in;
+      for(var i=0;i<4;i++)
+      {
+        if(coin_positions[x][i][0]==r &&coin_positions[x][i][1]==c)
+        {
+            point_in=i;
+            break;
+        }
+      }
+      var point_index=coin_index[x][point_in];
+      if(point_index+point>56)
+      {
+
+      }
+      else if(point_index+point==56)
+      {
+        coin_status[x][point_in]=2;
+        var pre_r=coin_position_scope[x][coin_index[x][point_in]][0];
+        var pre_c=coin_position_scope[x][coin_index[x][point_in]][1];
+        coin_index[x][point_in]=coin_index[x][point_in]+point;
+        coin_positions[x][point_in][0]=coin_position_scope[x][coin_index[x][point_in]][0];
+        coin_positions[x][point_in][1]=coin_position_scope[x][coin_index[x][point_in]][1];
+        var r=coin_position_scope[x][coin_index[x][point_in]][0];
+        var c=coin_position_scope[x][coin_index[x][point_in]][1];
+        change_ui(pre_r,pre_c,r,c,x);
+        if(iscomplete(x)==1)
+        {
+            alert("           CONGRATULATIONS \n       you win the game");
+            location=location;
+        }
+        var button=document.getElementById("button");
+        button.disabled=false;
+      }
+      else
+      {
+          var pre_r=coin_position_scope[x][coin_index[x][point_in]][0];
+          var pre_c=coin_position_scope[x][coin_index[x][point_in]][1];
+          coin_index[x][point_in]=coin_index[x][point_in]+point;
+          r=coin_position_scope[x][coin_index[x][point_in]][0];
+          c=coin_position_scope[x][coin_index[x][point_in]][1];
+          coin_positions[x][point_in][0]=r;
+          coin_positions[x][point_in][1]=c;
+          if(issafe(r,c)==1)
+          {
+            change_ui(pre_r,pre_c,r,c,x);
+          }
+          else
+          {
+              var count=anythere(r,c);
+              if(count>0)
+              {
+                for(var i=0;i<coin_positions.length;i++)
+                {
+                    if(i==x)
+                    {
+                          continue;
+                    }
+                    for(var j=0;j<4;j++)
+                    {
+                      if(coin_positions[i][j][0]==r && coin_positions[i][j][1]==c)
+                      {
+                          coin_status[i][j]=0;
+                          board.rows[dead_positions[i][j][0]].cells[dead_positions[i][j][1]].innerHTML=give_image(i,40);
+                          coin_positions[i][j][0]=dead_positions[i][j][0];
+                          coin_positions[i][j][1]=dead_positions[i][j][1];
+                          coin_index[i][j]=0;
+                          var button=document.getElementById("button");
+                          button.disabled=false;
+                          bute=1;
+                      }
+                    }
+                }
+              }
+              change_ui_for_dead(pre_r,pre_c,r,c,x);
+          }
+          if(bute==0)
+          {
+             var button=document.getElementById("button");
+             if(point==6)
+             {
+               button.disabled=false;
+             }
+             else
+             {console.log("zzzzzzzz")
+                next_chance();
+             }
+          }
+
+      }
+}
+function first_button()
+{
+    first(chance);
+}
+function random_number()
+{
+    var x=Math.floor(Math.random()*6)+1;
+    return x;
+}
+function no()
+{
+
+}
+function isdeadthere(x)
+{
+  for(var i=0;i<4;i++)
+  {
+    if(coin_status[x][i]==0)
+    {
+      return 1;
+    }
+  }
+  return 0;
+}
+function alldead(x)
+{
+  for(var i=0;i<4;i++)
+  {
+    if(coin_status[x][i]==1)
+    {
+      return 0;
+    }
+  }
+  return 1;
+}
+function possible(x,i)
+{
+    if(coin_index[x][i]+point<=56)
+    {
+      return 1;
+    }
+    return 0;
+}
+function not_possible(x)
+{
+    var live_count=0;
+    var notposs_count=0;
+    for(var i=0;i<4;i++)
+    {
+        if(coin_status[x][i]==1)
+        {
+          live_count++;
+          if(coin_index[x][i]+point>56)
+          {
+            notposs_count++;
+          }
+        }
+    }
+    if(live_count==notposs_count && live_count!=0)
+    {
+        return 1;
+    }
+    return 0;
+}
+function issafe(r,c)
+{
+    for(var i=0;i<8;i++)
+    {
+      if(safe_position[i][0]==r && safe_position[i][1]==c)
+      {
+        return 1;
+      }
+    }
+    return 0;
+}
+function isonelive(x)
+{
+    var count=0;
+    for(var i=0;i<4;i++)
+    {
+      if(coin_status[x][i]==1)
+      {
+        count++;
+      }
+    }
+    if(count==1)
+    {
+      return 1;
+    }
+    return 0;
+}
+function anythere(r,c)
+{
+    var count=0;
+    var len=coin_positions.length;
+    for(var i=0;i<len;i++)
+    {
+      for(var j=0;j<4;j++)
+      {
+        if(coin_positions[i][j][0]==r && coin_positions[i][j][1]==c)
+        {
+          count++;
+        }
+      }
+    }
+    return count;
+}
+function give_image(x,size)
+{
+  var forimage1="<img src=";
+  var forimage2=" width=\"40px\" ,height=\"40px\">";
+  var x1=forimage2.replace(/40/g,size);
+  forimage2=x1;
+  var img=images[x];
+  console.log(img+""+x);
+  var final=forimage1.concat(img,forimage2);
+  return final;
+}
+function dice_image(x)
+{
+  var forimage1="<img src=";
+  var forimage2=" width=\"90px\" ,height=\"90px\">";
+  var img=dice_pic[x-1];
+  var final=forimage1.concat(img,forimage2);
+  return final;
+}
+function iscomplete(x)
+{
+  var count=0;
+  for(var i=0;i<4;i++)
+  {
+    if(coin_status[x][i]==2)
+    {
+      count++;
+    }
+  }
+  if(count==4)
+  {
+    return 1;
+  }
+  return 0;
+}
+function change_ui_for_dead(pre_r,pre_c,r,c,x)
+{
+    var count=0;
+    var size,resize;
+    for(var i=0;i<4;i++)
+    {
+      for(var j=0;j<4;j++)
+      {
+        if(coin_positions[i][j][0]==pre_r && coin_positions[i][j][1]==pre_c)
+        {
+            count++
+        }
+      }
+    }
+    if(count>0)
+    {
+      size=40/(count+1);
+      resize=40/count;
+      var sup=give_image(x,size);
+      console.log(sup)
+      console.log(pre_r+" "+pre_c)
+      var si=board.rows[pre_r].cells[pre_c].innerHTML;
+      console.log(si)
+      var ni=si.replace(sup,"");
+      console.log(ni)
+      var reg=new RegExp(size,"g");
+      ni=ni.replace(reg,resize);
+      console.log(ni)
+      board.rows[pre_r].cells[pre_c].innerHTML=ni;
+    }
+    else
+    {
+        var st=0;
+        for(var i=0;i<4;i++)
+        {
+          if(pre_r==safe_position[i][0] && pre_c==safe_position[i][1])
+          {
+              board.rows[pre_r].cells[pre_c].innerHTML="<img src=\"star.png\" width=\"40px\" height=\"40px\">";
+              st=1;
+          }
+        }
+        if(st==0)
+        {
+            board.rows[pre_r].cells[pre_c].innerHTML="";
+        }
+    }
+    board.rows[r].cells[c].innerHTML="";
+    count=0;
+    for(var j=0;j<4;j++)
+    {
+      if(coin_positions[x][j][0]==r && coin_positions[x][j][1]==c)
+      {
+        count++;
+      }
+    }
+    if(count==1)
+    {
+      board.rows[r].cells[c].innerHTML=give_image(x,40);
+    }
+    else
+    {
+        size=40/count;
+        for(var i=0;i<count;i++)
+        {
+          board.rows[r].cells[c].innerHTML=board.rows[r].cells[c].innerHTML.concat(give_image(x,size));
+        }
+    }
+}
+function change_ui(pre_r,pre_c,r,c,x)
+{
+    var count=0;
+    var size,resize;
+    for(var i=0;i<4;i++)
+    {
+      for(var j=0;j<4;j++)
+      {
+        if(coin_positions[i][j][0]==pre_r && coin_positions[i][j][1]==pre_c)
+        {
+          count++;
+        }
+      }
+    }
+    if(count>0)
+    {
+      size=40/(count+1);
+      resize=40/count;
+      var sup=give_image(x,size);
+      console.log(sup)
+      var s1=board.rows[pre_r].cells[pre_c].innerHTML;
+      console.log(s1)
+      var n1=s1.replace(sup,"");
+      console.log(n1)
+      var reg=new RegExp(size,"g");
+      n1=n1.replace(reg,resize);
+      console.log(n1)
+      board.rows[pre_r].cells[pre_c].innerHTML=n1;
+    }
+    else
+    {
+        var st=0;
+        for(var i=0;i<4;i++)
+        {
+          if(pre_r==safe_position[i][0] && pre_c==safe_position[i][1])
+          {
+            board.rows[pre_r].cells[pre_c].innerHTML="<img src=\"star.png\" width=\"40px\" height=\"40px\">";
+            st=1;
+          }
+        }
+        if(st==0)
+        {
+          board.rows[pre_r].cells[pre_c].innerHTML="";
+        }
+    }
+        count=0;
+        for(var i=0;i<4;i++)
+        {
+          for(var j=0;j<4;j++)
+          {
+            if(coin_positions[i][j][0]==r && coin_positions[i][j][1]==c)
+            {
+              count++;
+            }
+          }
+        }
+        if(count>1)
+        {
+          size=40/(count-1);
+          resize=40/count;
+          var reg=new RegExp(size,"g");
+          var n1=board.rows[r].cells[c].innerHTML.replace(reg,resize);
+          n1=n1.concat(give_image(x,resize));
+          board.rows[r].cells[c].innerHTML=n1;
+        }
+        else
+        {
+            var df=give_image(x,40);
+            console.log(df);
+            board.rows[r].cells[c].innerHTML=df;
+
+        }
+
+}
+function next_chance()
+{
+  if(players==4)
+  {
+    if(chance==3)
+    {
+      chance=0;
+    }
+    else
+    {
+        chance++;
+    }
+  }
+  if(players==2)
+  {
+    if(chance==2)
+    {
+      chance=0;
+    }
+    else
+    {
+        chance=2;
+    }
+  }
+  var button=document.getElementById('button');
+  button.disabled=false;
+}
+function players_button(t)
+{
+  if(t.innerHTML=="4 PLAYERS")
+  {
+    players=4;
+    var div=document.getElementById("start_buttons");
+    div.innerHTML="";
+    var button=document.getElementById("button");
+    button.disabled=false;
+  }
+  else
+  {
+    players=2;
+    var div=document.getElementById("start_buttons");
+    div.innerHTML="";
+    for(var j=10;j<14;j++)
+    {
+      board.rows[1].cells[j].innerHTML=""
+    }
+    for(var j=1;j<5;j++)
+    {
+      board.rows[13].cells[j].innerHTML="";
+    }
+    var button=document.getElementById("button");
+    button.disabled=false;
+  }
+  document.getElementById("placeholder").style.visibility="visible";
+  document.getElementById("button").style.visibility="visible";
+
+}
+function initilize_board()
+{
+    document.getElementById("placeholder").style.visibility="hidden";
+    document.getElementById("button").style.visibility="hidden";
+    for(var i=0;i<16;i++)
+    {
+      if(i==0 || i==5)
+      {
+        for(var j=0;j<=5;j++)
+          board.rows[i].cells[j].style.backgroundColor="red";
+          for(var j=9;j<15;j++)
+            board.rows[i].cells[j].style.backgroundColor="green";
+      }
+      else if(i==1 || i==2 || i==3 ||i==4 || i==5)
+      {
+         board.rows[i].cells[0].style.backgroundColor="red";
+         board.rows[i].cells[5].style.backgroundColor="red";
+         board.rows[i].cells[9].style.backgroundColor="green";
+         board.rows[i].cells[14].style.backgroundColor="green";
+      }
+      if(i==9 || i==14)
+      {
+        for(var j=0;j<=5;j++)
+          board.rows[i].cells[j].style.backgroundColor="blue";
+        for(var j=9;j<15;j++)
+          board.rows[i].cells[j].style.backgroundColor="yellow";
+      }
+      else if(i==10 || i==11 || i==12 ||i==13 || i==14)
+      {
+         board.rows[i].cells[0].style.backgroundColor="blue";
+         board.rows[i].cells[5].style.backgroundColor="blue";
+         board.rows[i].cells[9].style.backgroundColor="yellow";
+         board.rows[i].cells[14].style.backgroundColor="yellow";
+      }
+      if(i==1)
+        board.rows[i].cells[8].style.backgroundColor="green";
+      if(i==6)
+        board.rows[i].cells[1].style.backgroundColor="red";
+      if(i==7)
+      {
+        for(var j=1;j<=5;j++)
+          board.rows[i].cells[j].style.backgroundColor="red";
+        for(var j=9;j<=13;j++)
+          board.rows[i].cells[j].style.backgroundColor="yellow";
+      }
+      if(i==8)
+        board.rows[i].cells[13].style.backgroundColor="yellow";
+      if(i==13)
+        board.rows[i].cells[6].style.backgroundColor="blue";
+        if(i==1||i==2||i==3||i==4||i==5)
+        board.rows[i].cells[7].style.backgroundColor="green";
+        if(i==9||i==10||i==11||i==12||i==13)
+            board.rows[i].cells[7].style.backgroundColor="blue";
+      }
+  }
+</script>
+</html>

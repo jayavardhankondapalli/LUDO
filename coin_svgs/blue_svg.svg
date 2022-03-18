@@ -1,0 +1,9 @@
+<svg  xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+     <circle cx="402" cy="402" r="400" stroke="black" stroke-width="8" fill="#0000cc" />
+  <circle cx="402" cy="402" r="320" stroke="black" stroke-width="0" fill="#1a1aff" />
+  <circle cx="402" cy="402" r="240" stroke="black" stroke-width="0" fill="#4d4dff" />
+  <circle cx="402" cy="402" r="160" stroke="black" stroke-width="0" fill="#8080ff" />
+  <circle cx="402" cy="402" r="80" stroke="black" stroke-width="0" fill="#0000cc" />
+
+</svg>
